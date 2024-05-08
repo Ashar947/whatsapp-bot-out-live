@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Whatsapp_Bot/FileContentIndex
+node_modules
+/.vs/Whatsapp_Bot/config/applicationhost.config
+/.vs/slnx.sqlite
+.wwebjs_auth
+.wwebjs_cache
+.vs/Whatsapp_Bot/v17/workspaceFileList.bin

@@ -1,0 +1,185 @@
+<%- include('header') %>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <h1 class="mb-0">Users</h1>
+            </div>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <button class="btn btn-primary" onclick="AddModal()">Add User</button>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="">
+                    <table class="table text-nowrap mb-0 align-middle" id="DT_table">
+                        <thead class="text-dark fs-4 my-bg">
+                            <tr>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Id</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Role</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Name</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Email</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Status</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Action</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="DT"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Add Modal Here -->
+    <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="AddModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="row row-gap-3">
+                            <div class="col-12">
+                                <label for="Role" class="form-label">Select Role</label>
+                                <select id="Role" class="form-select" required></select>
+                                <div class="invalid-feedback">Please Select Role.</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="Name" class="form-label">Name</label>
+                                <input type="text" id="Name" class="form-control" required>
+                                <div class="invalid-feedback">Please Enter Name.</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="Email" class="form-label">Email</label>
+                                <input type="text" id="Email" class="form-control" required>
+                                <div class="invalid-feedback">Please Enter Email.</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="Password" class="form-label">Password</label>
+                                <input type="text" id="Password" class="form-control" required>
+                                <div class="invalid-feedback">Please Enter Password.</div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="status">
+                                    <label class="form-check-label" for="status">
+                                        Status
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="Add(this)">Add</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Add Modal Here -->
+
+    <!-- Edit Modal Here -->
+    <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form>
+                    <div class="modal-body">
+                        <div class="row row-gap-3">
+                            <div class="col-12">
+                                <label for="Role" class="form-label">Select Role</label>
+                                <select id="Role" class="form-select"></select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="Name" class="form-label">Name</label>
+                                <input type="text" id="Name" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="Email" class="form-label">Email</label>
+                                <input type="text" id="Email" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="Password" class="form-label">Password</label>
+                                <input type="text" id="Password" class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="status">
+                                    <label class="form-check-label" for="status">
+                                        Status
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="Update">Update</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal Here -->
+
+    <!-- Delete Modal Here -->
+    <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/assets/images/warning.png" width="100" alt="">
+                    <h3>
+                        Are you sure?
+                    </h3>
+                    <p>
+                        Do you really want to delete these records? This process cannot be undone.
+                    </p>
+                </div>
+                <div class="modal-footer justify-content-center mb-3">
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal Here -->
+
+    <%- include('footer') %>
+    <script src="/assets/js/user.js"></script>
+
+

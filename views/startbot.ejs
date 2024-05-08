@@ -1,0 +1,22 @@
+<%- include('header') %>
+
+    <div class="container-fluid custom-height">
+
+        <div class="row h-100">
+            <div class="col-5 firstCol">
+
+                <h1 class="my-4">Wait a moment</h1>
+                <h2 class="lh-base">This process will require some time.</h2>
+            </div>
+            <div class="col-7">
+                <div id="qrCode" class="h-100 d-flex justify-content-center align-items-center">
+                    <div class="loader"></div>
+                    <div id="qrcodeCanvas"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>
+
+    <script src="/assets/js/qrcode.js"></script>

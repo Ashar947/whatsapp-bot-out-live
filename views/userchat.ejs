@@ -1,0 +1,280 @@
+<%- include('header') %>
+
+    <div class="container-fluid">
+
+        <div id="SelectDiv" class="row my-3 d-none">
+            <div class="col-12">
+                <select id="UserSelect" class="form-select w-25">
+                    <option value="">-- Please Select --</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="card overflow-hidden chat-application">
+
+            <div class="d-flex align-items-center justify-content-between gap-6 m-3 d-lg-none">
+                <button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#chat-sidebar" aria-controls="chat-sidebar">
+                    <i class="ti ti-menu-2 fs-5"></i>
+                </button>
+                <form class="position-relative w-100">
+                    <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh"
+                        placeholder="Search Contact">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                </form>
+            </div>
+
+            <div class="d-flex">
+
+                <input type="hidden" id="UserID" value="<%= UserID %>">
+                <div class="w-30 d-none d-lg-block border-end user-chat-box">
+                    <div class="app-chat" style="height: 610px !important;">
+                        <ul class="chat-users mb-0 mh-n100 simplebar-scrollable-y h-100" data-simplebar="init">
+                            <div class="simplebar-wrapper" style="margin: 0px;">
+                                <div class="simplebar-height-auto-observer-wrapper">
+                                    <div class="simplebar-height-auto-observer"></div>
+                                </div>
+                                <div class="simplebar-mask">
+                                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                        <div class="simplebar-content-wrapper" tabindex="0" role="region"
+                                            aria-label="scrollable content"
+                                            style="height: auto; overflow: auto;">
+                                            <div id="AllClients" class="simplebar-content" style="padding: 0px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="simplebar-placeholder" style="width: 345px; height: 560px;"></div>
+                            </div>
+                            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                            </div>
+                            <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                                <div class="simplebar-scrollbar"
+                                    style="height: 25px; display: block; transform: translate3d(0px, 0px, 0px);"></div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="w-70 w-xs-100 chat-container w-75">
+                    <div class="chat-box-inner-part h-100">
+                        <div class="chat-not-selected h-100 d-none">
+                            <div class="d-flex align-items-center justify-content-center h-100 p-5">
+                                <div class="text-center">
+                                    <span class="text-primary">
+                                        <i class="ti ti-message-dots fs-10"></i>
+                                    </span>
+                                    <h6 class="mt-2">Open chat from the list</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chatting-box d-block">
+                            <div
+                                class="p-9 border-bottom chat-meta-user d-flex align-items-center justify-content-between">
+                                <div class="hstack gap-3 current-chat-user-name">
+                                    <div class="position-relative d-none">
+                                        <img src="https://bootstrapdemos.adminmart.com/modernize/dist/assets/images/profile/user-2.jpg"
+                                            alt="user1" width="48" height="48" class="rounded-circle">
+                                        <span
+                                            class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
+                                            <span class="visually-hidden">New alerts</span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1 name fw-semibold" id="ClientName"></h6>
+                                        <p class="mb-0"></p>
+                                    </div>
+                                </div>
+                                <ul class="list-unstyled mb-0 d-flex align-items-center d-none">
+                                    <li>
+                                        <a class="text-dark px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5"
+                                            href="javascript:void(0)"><i class="ti ti-phone"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="text-dark px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5"
+                                            href="javascript:void(0)"><i class="ti ti-video"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="chat-menu text-dark px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5"
+                                            href="javascript:void(0)">
+                                            <i class="ti ti-menu-2"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="d-flex parent-chat-box" style="height:490px !important;">
+                                <div class="chat-box w-100 w-xs-100">
+                                    <div class="chat-box-inner p-9 h-100" data-simplebar="init">
+                                        <div class="simplebar-wrapper" style="margin: -20px;">
+                                            <div class="simplebar-height-auto-observer-wrapper">
+                                                <div class="simplebar-height-auto-observer"></div>
+                                            </div>
+                                            <div class="simplebar-mask">
+                                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                                    <div class="simplebar-content-wrapper" tabindex="0" role="region"
+                                                        aria-label="scrollable content"
+                                                        style="height: 100%; overflow-y: auto;">
+                                                        <div class="simplebar-content" id="chatlist"  style="padding: 20px;">
+                                                            <div class="chat-list chat active-chat" data-user-id="1"></div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="simplebar-placeholder" style="width: 506px; height: 577px;">
+                                            </div>
+                                        </div>
+                                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                            <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                                        </div>
+                                        <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+                                            <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="px-9 py-6 border-top chat-send-message-footer">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center gap-2 w-100">
+                                                <input type="text" id="message-type-box"
+                                                    class="form-control message-type-box text-muted border-0 p-0 ms-2"
+                                                    placeholder="Type a Message" fdprocessedid="0p3op">
+                                            </div>
+                                            <ul class="list-unstyledn mb-0 d-flex align-items-center d-none">
+                                                <li>
+                                                    <a class="text-dark px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5"
+                                                        href="javascript:void(0)"><i class="ti ti-photo-plus"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a class="text-dark px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5"
+                                                        href="javascript:void(0)"><i class="ti ti-paperclip"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a class="text-dark px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5"
+                                                        href="javascript:void(0)"><i class="ti ti-microphone"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offcanvas offcanvas-start user-chat-box chat-offcanvas" tabindex="-1" id="chat-sidebar"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                            Chats
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="px-4 pt-9 pb-6">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="position-relative">
+                                    <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="fw-semibold mb-2">Mathew Anderson</h6>
+                                    <p class="mb-0 fs-2">Designer</p>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="text-dark fs-6 nav-icon-hover" href="javascript:void(0)" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="ti ti-dots-vertical"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 border-bottom"
+                                            href="javascript:void(0)"><span><i
+                                                    class="ti ti-settings fs-4"></i></span>Setting</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2"
+                                            href="javascript:void(0)"><span><i class="ti ti-help fs-4"></i></span>Help
+                                            and feadback</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2"
+                                            href="javascript:void(0)"><span><i
+                                                    class="ti ti-layout-board-split fs-4"></i></span>Enable split View
+                                            mode</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 border-bottom"
+                                            href="javascript:void(0)"><span><i
+                                                    class="ti ti-table-shortcut fs-4"></i></span>Keyboard
+                                            shortcut</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2"
+                                            href="javascript:void(0)"><span><i class="ti ti-login fs-4"></i></span>Sign
+                                            Out</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form class="position-relative mb-4">
+                            <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh"
+                                placeholder="Search Contact">
+                            <i
+                                class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
+                        <div class="dropdown">
+                            <a class="text-muted fw-semibold d-flex align-items-center" href="javascript:void(0)"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Recent Chats<i class="ti ti-chevron-down ms-1 fs-5"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="javascript:void(0)">Sort by time</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item border-bottom" href="javascript:void(0)">Sort by Unread</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="javascript:void(0)">Hide favourites</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="app-chat">
+                        <ul class="chat-users mh-n100 simplebar-scrollable-y" data-simplebar="init">
+                            <div class="simplebar-wrapper" style="margin: 0px;">
+                                <div class="simplebar-height-auto-observer-wrapper">
+                                    <div class="simplebar-height-auto-observer"></div>
+                                </div>
+                                <div class="simplebar-mask">
+                                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                        <div class="simplebar-content-wrapper" tabindex="0" role="region"
+                                            aria-label="scrollable content"
+                                            style="height: auto; overflow: auto;">
+                                            <div class="simplebar-content" style="padding: 0px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="simplebar-placeholder" style="width: 330px; height: 560px;"></div>
+                            </div>
+                            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                            </div>
+                            <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                                <div class="simplebar-scrollbar"
+                                    style="height: 25px; display: block; transform: translate3d(0px, 0px, 0px);"></div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>
+
+        <script src="/assets/js/userchat.js"></script>
