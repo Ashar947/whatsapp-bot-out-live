@@ -17,6 +17,8 @@ const config = {
   database: process.env.DB_NAME,
 }
 
+console.log("config",config)
+
 const Connected_DAL = new DAL(config);
 
 /**
